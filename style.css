@@ -108,14 +108,15 @@ main{margin-right:280px;padding:28px;min-height:100vh}
 .footer{margin-top:32px;padding:16px 0;text-align:center;color:var(--muted);font-size:14px}
 
 /* responsiveness */
-@media (max-width:900px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-}
+@media (max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:768px){
   main{margin-right:0;padding:18px}
   .sidebar{transform:translateX(100%);width:220px}
   .menu-toggle{display:block}
   .sidebar.active{transform:translateX(0)}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:12px}
+  .hero{padding:40px 20px}
+  .service-card{padding:14px}
 }
 
 /* Dark theme */

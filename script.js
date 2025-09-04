@@ -19,9 +19,18 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-// sidebar toggle for mobile
+// sidebar toggle for mobile with icon change
 const menuBtn = document.getElementById('menu-toggle');
 const sidebar = document.getElementById('sidebar');
+const menuIcon = menuBtn.querySelector('i');
+
 menuBtn.addEventListener('click', () => {
   sidebar.classList.toggle('active');
+  if(sidebar.classList.contains('active')){
+    menuIcon.classList.remove('fa-bars');
+    menuIcon.classList.add('fa-xmark');
+  } else {
+    menuIcon.classList.remove('fa-xmark');
+    menuIcon.classList.add('fa-bars');
+  }
 });
