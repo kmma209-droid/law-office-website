@@ -15,6 +15,20 @@ body{
   direction:rtl;
 }
 
+.menu-toggle{
+  display:none;
+  position:fixed;
+  top:18px;right:18px;
+  z-index:1000;
+  font-size:24px;
+  background:var(--accent);
+  color:#111;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
 .sidebar{
   width:260px;
   position:fixed;
@@ -28,6 +42,7 @@ body{
   background:linear-gradient(180deg,#3b3b3b,#222);
   color:#fff;
   gap:10px;
+  transition:transform .3s ease;
 }
 .brand{text-align:center}
 .brand .logo{font-size:36px;margin-bottom:6px}
@@ -95,12 +110,12 @@ main{margin-right:280px;padding:28px;min-height:100vh}
 /* responsiveness */
 @media (max-width:900px){
   .grid{grid-template-columns:repeat(2,1fr)}
-  .about-grid,.contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:768px){
   main{margin-right:0;padding:18px}
-  .sidebar{position:relative;width:100%;height:auto;flex-direction:row;gap:12px;padding:12px;align-items:center}
-  .nav-links{display:flex;gap:12px;overflow:auto}
-  .sidebar-bottom{display:none}
-  .hero{padding:36px 18px}
+  .sidebar{transform:translateX(100%);width:220px}
+  .menu-toggle{display:block}
+  .sidebar.active{transform:translateX(0)}
 }
 
 /* Dark theme */

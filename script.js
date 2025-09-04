@@ -1,4 +1,3 @@
-// set year
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // theme toggle with preference
@@ -18,4 +17,11 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   alert('تم استلام رسالتك، سنتواصل معك قريباً ✅');
   form.reset();
+});
+
+// sidebar toggle for mobile
+const menuBtn = document.getElementById('menu-toggle');
+const sidebar = document.getElementById('sidebar');
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
 });
