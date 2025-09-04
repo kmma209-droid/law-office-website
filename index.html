@@ -7,10 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body>
   <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-  <nav class="sidebar" id="sidebar">
+  <nav id="main-nav" class="sidebar" id="sidebar">
     <div class="brand fade-in">
       <div class="logo">⚖️</div>
       <h1>مكتب المحاماة</h1>
@@ -28,6 +29,12 @@
       <button id="theme-toggle" class="btn">🌓 تبديل الثيم</button>
       <p class="copy">© <span id="year"></span> كل الحقوق محفوظة</p>
     </div>
+  
+    <ul class="auth-links">
+      <li><a href="login.html" id="login-link">تسجيل الدخول</a></li>
+      <li style="display:none"><a href="#" id="logout-link">تسجيل الخروج</a></li>
+      <li id="welcome-user" style="display:none"></li>
+    </ul>
   </nav>
 
   <main>
@@ -86,7 +93,52 @@
       </div>
     </section>
 
-    <section id="contact" class="section alt">
+    
+
+<section id="testimonials" class="testimonials" data-aos="fade-up">
+  <div class="container">
+    <h2>آراء العملاء</h2>
+    <div class="slider">
+      <blockquote class="t-item">
+        <p>تعامل راقٍ واحترافية عالية. تم حل قضيتي بأسرع وقت.</p>
+        <footer>— م. خالد</footer>
+      </blockquote>
+      <blockquote class="t-item">
+        <p>فريق متميز ومتابعة مستمرة. أنصح بشدة.</p>
+        <footer>— د. منى</footer>
+      </blockquote>
+      <blockquote class="t-item">
+        <p>خبرة قانونية واضحة وتواصل ممتاز.</p>
+        <footer>— أ. محمد</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="team" data-aos="fade-up">
+  <div class="container">
+    <h2>فريقنا</h2>
+    <div class="cards">
+      <article class="card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="محامٍ" loading="lazy">
+        <h3>أ. أحمد علي</h3>
+        <p>محامٍ ومستشار قانوني - عقود وشركات</p>
+      </article>
+      <article class="card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="محامية" loading="lazy">
+        <h3>أ. سارة محمد</h3>
+        <p>محامية - قضايا الأسرة والأحوال الشخصية</p>
+      </article>
+      <article class="card">
+        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="محامٍ" loading="lazy">
+        <h3>أ. كريم حسن</h3>
+        <p>محامٍ - القضايا المدنية والجنائية</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section alt">
       <div class="container">
         <h3 class="section-title slide-up">تواصل معنا</h3>
         <div class="contact-grid fade-in">
@@ -112,6 +164,12 @@
           </aside>
         </div>
       </div>
+    
+        <div class="map-container" data-aos="fade-up">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110566.3219!2d31.2357!3d30.0444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAyJzQwLjAiTiAzMcKwMTQnMDguMCJF!5e0!3m2!1sar!2seg!4v1234567890" 
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </section>
 
     <footer class="footer fade-in">
@@ -122,5 +180,28 @@
   </main>
 
   <script src="script.js"></script>
+
+<button id="cta-btn" class="whatsapp-float" aria-label="واتساب">
+  <svg id="cta-icon-whatsapp" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.77 11.77 0 0 0 12 0C5.37 0 .02 5.35.02 11.97c0 2.11.55 4.17 1.6 5.98L0 24l6.28-1.64a12.1 12.1 0 0 0 5.72 1.44h.01c6.63 0 11.98-5.35 11.98-11.97a11.89 11.89 0 0 0-3.47-8.35z"/>
+  </svg>
+  <svg id="cta-icon-close" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24" style="display:none">
+    <path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.9a1 1 0 0 0 1.41-1.41L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4z"/>
+  </svg>
+</button>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<button id="scrollTopBtn" aria-label="إلى أعلى">↑</button>
+
+<div id="cta-modal" class="cta-modal">
+  <div class="modal-content">
+    <p>هل تحب أن تتواصل مع أحد أعضاء المكتب؟</p>
+    <div class="actions">
+      <button id="cta-yes" class="btn-primary">نعم</button>
+      <button id="cta-no" class="btn-secondary">لا</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
