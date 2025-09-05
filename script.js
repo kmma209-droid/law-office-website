@@ -70,35 +70,31 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-// === CTA Modal Logic ===
-const ctaBtn = document.getElementById('cta-btn');
-const ctaModal = document.getElementById('cta-modal');
-const ctaYes = document.getElementById('cta-yes');
-const ctaNo = document.getElementById('cta-no');
-const iconW = document.getElementById('cta-icon-whatsapp');
-const iconX = document.getElementById('cta-icon-close');
+// CTA Modal Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const ctaBtn = document.getElementById('cta-btn');
+  const ctaModal = document.getElementById('cta-modal');
+  const ctaNo = document.getElementById('cta-no');
 
-if(ctaBtn && ctaModal){
-  ctaBtn.addEventListener('click', ()=>{
-    const isOpen = ctaModal.style.display==='flex';
-    if(isOpen){
-      ctaModal.style.display='none';
-      iconW.style.display='block'; iconX.style.display='none';
-    } else {
-      ctaModal.style.display='flex';
-      iconW.style.display='none'; iconX.style.display='block';
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', () => {
+      ctaModal.style.display = 'flex';
+    });
+  }
+
+  if (ctaNo) {
+    ctaNo.addEventListener('click', () => {
+      ctaModal.style.display = 'none';
+    });
+  }
+
+  window.addEventListener('click', (e) => {
+    if (e.target === ctaModal) {
+      ctaModal.style.display = 'none';
     }
   });
-  if(ctaNo) ctaNo.addEventListener('click', ()=>{
-    ctaModal.style.display='none';
-    iconW.style.display='block'; iconX.style.display='none';
-  });
-  if(ctaYes) ctaYes.addEventListener('click', ()=>{
-    window.open('https://wa.me/201012345678?text=مرحباً، أود حجز استشارة قانونية.','_blank');
-    ctaModal.style.display='none';
-    iconW.style.display='block'; iconX.style.display='none';
-  });
-}
+});
+
 
 // === Auth UI ===
 document.addEventListener("DOMContentLoaded",()=>{
@@ -118,4 +114,52 @@ document.addEventListener("DOMContentLoaded",()=>{
       window.location.reload();
     });
   }
+  
+
+  
+
+
+  
+  
 });
+
+
+
+// articals
+
+// أضف هذا الكود في نهاية ملف script.js
+function displayArticles() {
+    const articlesList = document.getElementById('articles-list');
+    const articles = JSON.parse(localStorage.getItem('articles')) || [];
+
+    if (!articlesList) {
+        return;
+    }
+
+    if (articles.length === 0) {
+        articlesList.innerHTML = '<p style="text-align: center;">لا توجد مقالات حاليًا.</p>';
+        return;
+    }
+
+    articlesList.innerHTML = '';
+    articles.forEach((article, index) => {
+        const li = document.createElement('li');
+        li.classList.add('article-item');
+        
+        const articleLink = document.createElement('a');
+        articleLink.href = `article-detail.html?id=${index}`;
+        
+        const articleCard = document.createElement('div');
+        articleCard.classList.add('article-card');
+        articleCard.innerHTML = `
+            <h3>${article.title}</h3>
+            <p>${article.description.substring(0, 150)}...</p>
+        `;
+
+        articleLink.appendChild(articleCard);
+        li.appendChild(articleLink);
+        articlesList.appendChild(li);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', displayArticles);

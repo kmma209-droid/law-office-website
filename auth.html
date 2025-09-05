@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول - مكتب المحاماة</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<!-- Auth Modal (Lawyer Style) -->
+<div id="auth-modal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+  <div class="auth-card">
+    <button class="auth-close" id="auth-close" aria-label="إغلاق">×</button>
+    <h2 id="auth-title" class="auth-title">مرحبًا بك في مكتب المحاماة</h2>
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" id="tab-login" role="tab" aria-controls="panel-login" aria-selected="true">تسجيل الدخول</button>
+      <button class="auth-tab" id="tab-register" role="tab" aria-controls="panel-register" aria-selected="false">إنشاء حساب</button>
+    </div>
+    <div class="auth-panels">
+      <div id="panel-login" class="auth-panel" role="tabpanel">
+        <form id="form-login" class="auth-form">
+          <label for="login-username">اسم المستخدم</label>
+          <input type="text" id="login-username" required>
+          <label for="login-password">كلمة المرور</label>
+          <input type="password" id="login-password" required>
+          <button type="submit" class="btn-primary">دخول</button>
+        </form>
+        <button id="google-login" class="google-btn">
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo"/> تسجيل الدخول باستخدام Google
+        </button>
+      </div>
+      <div id="panel-register" class="auth-panel" role="tabpanel" hidden>
+        <form id="form-register" class="auth-form">
+          <label for="reg-name">الاسم</label>
+          <input type="text" id="reg-name" required>
+          <label for="reg-username">اسم المستخدم</label>
+          <input type="text" id="reg-username" required>
+          <label for="reg-password">كلمة المرور</label>
+          <input type="password" id="reg-password" required minlength="3">
+          <button type="submit" class="btn-primary">إنشاء حساب</button>
+        </form>
+        <button id="google-register" class="google-btn">
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo"/> تسجيل باستخدام Google
+        </button>
+      </div>
+    </div>
+    <p id="auth-error" class="auth-error" style="display:none"></p>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>

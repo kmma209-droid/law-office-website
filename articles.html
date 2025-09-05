@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة المقالات</title>
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      background: var(--bg, #f9f9f9);
+      color: var(--text, #222);
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-primary { background: #0d6efd; color: #fff; }
+    .btn-danger { background: #dc3545; color: #fff; }
+    .btn-secondary { background: #6c757d; color: #fff; }
+    .btn:hover { opacity: 0.9; }
+
+    #article-form {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+    #article-form input, #article-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #articles-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .article-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .article-card img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .article-card h3 { margin: 10px 0 5px; }
+    .article-card p { font-size: 14px; color: #555; }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body { --bg: #121212; --text: #f1f1f1; }
+      #article-form, .article-card { background: #1e1e1e; color: #f1f1f1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>إدارة المقالات</h1>
+  <button id="new-article-btn" class="btn btn-primary">➕ إنشاء مقال جديد</button>
+
+  <form id="article-form">
+    <input type="text" id="title" placeholder="عنوان المقال" required>
+    <input type="text" id="category" placeholder="التصنيف" required>
+    <input type="text" id="image" placeholder="رابط الصورة" required>
+    <textarea id="description" placeholder="الوصف" required></textarea>
+    <input type="text" id="links" placeholder="روابط إضافية (اختياري)">
+    <button type="submit" class="btn btn-primary">💾 حفظ</button>
+    <button type="button" id="cancel" class="btn btn-secondary">❌ إلغاء</button>
+  </form>
+
+  <div id="articles-list"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("new-article-btn");
+      const form = document.getElementById("article-form");
+      const cancelBtn = document.getElementById("cancel");
+      const list = document.getElementById("articles-list");
+
+      let articles = JSON.parse(localStorage.getItem("articles") || "[]");
+      let editIndex = null;
+
+      function saveArticles() {
+        localStorage.setItem("articles", JSON.stringify(articles));
+        renderArticles();
+      }
+
+      function renderArticles() {
+        list.innerHTML = "";
+        articles.forEach((a, i) => {
+          const card = document.createElement("div");
+          card.className = "article-card";
+          card.innerHTML = `
+            <img src="${a.image}" alt="${a.title}">
+            <h3>${a.title}</h3>
+            <p><strong>التصنيف:</strong> ${a.category}</p>
+            <p>${a.description}</p>
+            ${a.links ? `<a href="${a.links}" target="_blank">رابط إضافي</a>` : ""}
+            <div class="actions">
+              <button class="btn btn-primary" onclick="editArticle(${i})">✏️ تعديل</button>
+              <button class="btn btn-danger" onclick="deleteArticle(${i})">🗑️ حذف</button>
+            </div>
+          `;
+          list.appendChild(card);
+        });
+      }
+
+      window.editArticle = (i) => {
+        const a = articles[i];
+        document.getElementById("title").value = a.title;
+        document.getElementById("category").value = a.category;
+        document.getElementById("image").value = a.image;
+        document.getElementById("description").value = a.description;
+        document.getElementById("links").value = a.links || "";
+        editIndex = i;
+        form.style.display = "block";
+      };
+
+      window.deleteArticle = (i) => {
+        if (confirm("هل أنت متأكد من حذف هذا المقال؟")) {
+          articles.splice(i, 1);
+          saveArticles();
+        }
+      };
+
+      btn.addEventListener("click", () => {
+        form.style.display = "block";
+        editIndex = null;
+        form.reset();
+      });
+
+      cancelBtn.addEventListener("click", () => {
+        form.style.display = "none";
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title = document.getElementById("title").value;
+        const category = document.getElementById("category").value;
+        const image = document.getElementById("image").value;
+        const description = document.getElementById("description").value;
+        const links = document.getElementById("links").value;
+
+        const newArticle = { title, category, image, description, links };
+
+        if (editIndex !== null) {
+          articles[editIndex] = newArticle;
+        } else {
+          articles.push(newArticle);
+        }
+
+        saveArticles();
+        form.reset();
+        form.style.display = "none";
+      });
+
+      renderArticles();
+    });
+  </script>
+</body>
+</html>

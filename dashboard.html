@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المدير</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f4f6;
+            color: #222;
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+        }
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #3b3b3b, #222);
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #c59d1f;
+        }
+        .sidebar-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .sidebar-links li {
+            margin-bottom: 10px;
+        }
+        .sidebar-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .sidebar-links a:hover {
+            background: #444;
+        }
+        .logout-btn {
+            background: #e74c3c;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        .logout-btn:hover {
+            opacity: 0.9;
+        }
+        .main-content {
+            margin-right: 260px;
+            padding: 40px;
+            width: 100%;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #c59d1f;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+        .btn-primary { background: #0d6efd; color: #fff; }
+        .btn-danger { background: #dc3545; color: #fff; }
+        .btn-secondary { background: #6c757d; color: #fff; }
+        .btn-archive { background: #ff9800; color: #fff; }
+        .btn-unarchive { background: #4caf50; color: #fff; }
+        .btn:hover { opacity: 0.9; }
+        #article-form {
+            background: #f4f4f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+        #article-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        #article-form input, #article-form textarea, #article-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        #article-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #article-list li {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        #article-list li .article-info {
+            flex-grow: 1;
+        }
+        #article-list li h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.2em;
+        }
+        #article-list li .meta {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        #article-list li .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>لوحة التحكم</h2>
+        <ul class="sidebar-links">
+            <li><a href="#articles-section">المقالات</a></li>
+            <li><a href="#">الجلسات</a></li>
+            <li><a href="#">المكتبة</a></li>
+            <li><a href="#">الموكلين</a></li>
+            <li><a href="#">آخر الأخبار</a></li>
+        </ul>
+        <button id="logout-btn" class="logout-btn">تسجيل الخروج</button>
+    </nav>
+
+    <div class="main-content">
+        <div class="container" id="articles-section">
+            <h1>إدارة المقالات</h1>
+            <button id="add-article-btn" class="btn btn-primary">إضافة مقال جديد</button>
+            <div id="article-form">
+                <h3>إنشاء / تعديل مقال</h3>
+                <form id="article-manager-form">
+                    <input type="hidden" id="article-id">
+                    
+                    <label for="title">اسم المقال</label>
+                    <input type="text" id="title" placeholder="عنوان المقال" required>
+
+                    <label for="date">تاريخ المقال</label>
+                    <input type="date" id="date" required>
+                    
+                    <label for="category">تصنيف المقال</label>
+                    <select id="category" required>
+                        <option value="">اختر تصنيف</option>
+                        <option value="قضايا">قضايا</option>
+                        <option value="مقالات قانونية">مقالات قانونية</option>
+                        <option value="أخبار">أخبار</option>
+                    </select>
+
+                    <label for="image">رابط صورة المقال</label>
+                    <input type="url" id="image" placeholder="مثال: https://example.com/image.jpg" required>
+
+                    <label for="description">وصف المقال</label>
+                    <textarea id="description" placeholder="محتوى المقال الكامل" rows="8" required></textarea>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="save-btn">حفظ المقال</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-btn">إلغاء</button>
+                    </div>
+                </form>
+            </div>
+            
+            <ul id="article-list"></ul>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
