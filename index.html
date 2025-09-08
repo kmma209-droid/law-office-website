@@ -1,225 +1,263 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>مكتب المحاماة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>مكتب المحاماة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-  <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-  <nav id="main-nav" class="sidebar" id="sidebar">
-    <div class="brand fade-in">
-      <div class="logo">⚖️</div>
-      <h1>مكتب المحاماة</h1>
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="#home"><i class="fa-solid fa-house"></i>الرئيسية</a></li>
-      <li><a href="#services"><i class="fa-solid fa-gavel"></i>الخدمات</a></li>
-      <li><a href="#about"><i class="fa-solid fa-people-group"></i>عن المكتب</a></li>
-      <li><a href="#articles"><i class="fa-solid fa-newspaper"></i>المقالات</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i>تواصل معنا</a></li>
+    <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+    <nav id="main-nav" class="sidebar">
+        <div class="brand fade-in">
+            <div class="logo">⚖️</div>
+            <h1>مكتب المحاماة</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home"><i class="fa-solid fa-house"></i>الرئيسية</a></li>
+            <li><a href="#services"><i class="fa-solid fa-gavel"></i>الخدمات</a></li>
+            <li><a href="#about"><i class="fa-solid fa-people-group"></i>عن المكتب</a></li>
+            <li><a href="articles.html"><i class="fa-solid fa-newspaper"></i>المقالات</a></li>
+            <li><a href="library.html"><i class="fa-solid fa-book"></i>المكتبة</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-envelope"></i>تواصل معنا</a></li>
             <li><a href="auth.html"><i class="fa-solid fa-user"></i>تسجيل الدخول </a></li>
             <li><a href="dashboard.html"><i class="fa-solid fa-gauge"></i>لوحة التحكم (أدمن)</a></li>
-
-    </ul>
-
-    <div class="sidebar-bottom">
-      <button id="theme-toggle" class="btn">🌓 تبديل الثيم</button>
-      <p class="copy">© <span id="year"></span> كل الحقوق محفوظة</p>
-    </div>
-<!--   
-    <ul class="auth-links">
-      <li><a href="login.html" id="login-link">تسجيل الدخول</a></li>
-      <li style="display:none"><a href="#" id="logout-link">تسجيل الخروج</a></li>
-      <li id="welcome-user" style="display:none"></li>
-    </ul> -->
-  </nav>
-
-  <main>
-    <header id="home" class="hero fade-in">
-      <div class="hero-inner">
-        <h2>مرحباً بكم في مكتبنا القانوني</h2>
-        <p>خدمات قانونية متكاملة — تمثيل قضائي واستشارات موثوقة.</p>
-        <a class="cta" href="#contact">اطلب استشارة</a>
-      </div>
-    </header>
-
-    <section id="services" class="section">
-      <div class="container">
-        <h3 class="section-title slide-up">خدماتنا</h3>
-        <div class="grid">
-          <article class="service-card fade-in">
-            <i class="fa-solid fa-briefcase"></i>
-            <h4>القضايا المدنية والتجارية</h4>
-            <p>تمثيل أمام المحاكم والتحكيم وحل النزاعات.</p>
-          </article>
-          <article class="service-card fade-in">
-            <i class="fa-solid fa-house-chimney-crack"></i>
-            <h4>أحوال شخصية</h4>
-            <p>قضايا وراثة، نفقة، طلاق، ومواضيع الأسرة.</p>
-          </article>
-          <article class="service-card fade-in">
-            <i class="fa-solid fa-comments"></i>
-            <h4>استشارات قانونية</h4>
-            <p>تحليل عقود، مراجعات للشركات والنصائح الوقائية.</p>
-          </article>
+        </ul>
+        <div class="sidebar-bottom">
+            <button id="theme-toggle" class="btn">🌓 تبديل الثيم</button>
+            <p class="copy">© <span id="year"></span> كل الحقوق محفوظة</p>
         </div>
-      </div>
-    </section>
-
-    <section id="about" class="section alt">
-      <div class="container">
-        <h3 class="section-title slide-up">عن المكتب</h3>
-        <div class="about-grid fade-in">
-          <div class="about-text">
-            <p>مكتب متخصص يضم فريق من المحامين ذوي الخبرة في مجالات متعددة. نعمل على تقديم حلول قانونية عملية ومُصمَّمة لكل حالة.</p>
-            <ul>
-              <li>خبرة واسعة في التقاضي والتحكيم</li>
-              <li>نهج عملي وتركيز على مصلحة الموكل</li>
-              <li>سرية تامة وشفافية في الرسوم</li>
-            </ul>
-          </div>
-          <div class="about-image" aria-hidden="true"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="articles" class="section">
-      <div class="container">
-        <h3 class="section-title slide-up">المقالات</h3>
-        <p class="fade-in">قريباً سيُعرض هنا أحدث مقالاتنا القانونية.</p>
-      </div>
-<ul id="articles-list"></ul>
-      
-    </section>
-
-    
-
-<section id="testimonials" class="testimonials" data-aos="fade-up">
-  <div class="container">
-    <h2>آراء العملاء</h2>
-    <div class="slider">
-      <blockquote class="t-item">
-        <p>تعامل راقٍ واحترافية عالية. تم حل قضيتي بأسرع وقت.</p>
-        <footer>— م. خالد</footer>
-      </blockquote>
-      <blockquote class="t-item">
-        <p>فريق متميز ومتابعة مستمرة. أنصح بشدة.</p>
-        <footer>— د. منى</footer>
-      </blockquote>
-      <blockquote class="t-item">
-        <p>خبرة قانونية واضحة وتواصل ممتاز.</p>
-        <footer>— أ. محمد</footer>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<section id="team" class="team" data-aos="fade-up">
-  <div class="container">
-    <h2>فريقنا</h2>
-    <div class="cards">
-      <article class="card">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="محامٍ" loading="lazy">
-        <h3>أ. أحمد علي</h3>
-        <p>محامٍ ومستشار قانوني - عقود وشركات</p>
-      </article>
-      <article class="card">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="محامية" loading="lazy">
-        <h3>أ. سارة محمد</h3>
-        <p>محامية - قضايا الأسرة والأحوال الشخصية</p>
-      </article>
-      <article class="card">
-        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="محامٍ" loading="lazy">
-        <h3>أ. كريم حسن</h3>
-        <p>محامٍ - القضايا المدنية والجنائية</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section alt">
-      <div class="container">
-        <h3 class="section-title slide-up">تواصل معنا</h3>
-        <div class="contact-grid fade-in">
-          <form id="contact-form" class="contact-form">
-            <label>الاسم</label>
-            <input type="text" name="name" placeholder="اسمك" required>
-            <label>البريد الإلكتروني</label>
-            <input type="email" name="email" placeholder="example@mail.com" required>
-            <label>الرسالة</label>
-            <textarea name="message" rows="5" placeholder="اكتب رسالتك..." required></textarea>
-            <button type="submit" class="btn">إرسال</button>
-          </form>
-          <aside class="contact-info">
-            <h4>معلومات التواصل</h4>
-            <p><i class="fa-solid fa-phone"></i> 0123-456-789</p>
-            <p><i class="fa-solid fa-envelope"></i> info@lawoffice.example</p>
-            <p><i class="fa-solid fa-location-dot"></i> مدينتك - عنوان المكتب</p>
-            <div class="socials">
-              <a href="#" aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" aria-label="twitter"><i class="fa-brands fa-twitter"></i></a>
-              <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+    </nav>
+    <main>
+        <header id="home" class="hero fade-in">
+            <div class="hero-inner">
+                <h2>مرحباً بكم في مكتبنا القانوني</h2>
+                <p>خدمات قانونية متكاملة — تمثيل قضائي واستشارات موثوقة.</p>
+                <a class="cta" href="#contact">اطلب استشارة</a>
             </div>
-          </aside>
+        </header>
+        <section id="services" class="section">
+            <div class="container">
+                <h3 class="section-title slide-up">خدماتنا</h3>
+                <div class="grid">
+                    <article class="service-card fade-in">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h4>القضايا المدنية والتجارية</h4>
+                        <p>تمثيل أمام المحاكم والتحكيم وحل النزاعات.</p>
+                    </article>
+                    <article class="service-card fade-in">
+                        <i class="fa-solid fa-house-chimney-crack"></i>
+                        <h4>أحوال شخصية</h4>
+                        <p>قضايا وراثة، نفقة، طلاق، ومواضيع الأسرة.</p>
+                    </article>
+                    <article class="service-card fade-in">
+                        <i class="fa-solid fa-comments"></i>
+                        <h4>استشارات قانونية</h4>
+                        <p>تحليل عقود، مراجعات للشركات والنصائح الوقائية.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="section alt">
+            <div class="container">
+                <h3 class="section-title slide-up">عن المكتب</h3>
+                <div class="about-grid fade-in">
+                    <div class="about-text">
+                        <p>مكتب متخصص يضم فريق من المحامين ذوي الخبرة في مجالات متعددة. نعمل على تقديم حلول قانونية عملية ومُصمَّمة لكل حالة.</p>
+                        <ul>
+                            <li>خبرة واسعة في التقاضي والتحكيم</li>
+                            <li>نهج عملي وتركيز على مصلحة الموكل</li>
+                            <li>سرية تامة وشفافية في الرسوم</li>
+                        </ul>
+                    </div>
+                    <div class="about-image" aria-hidden="true"></div>
+                </div>
+            </div>
+        </section>
+        <section id="articles" class="section">
+            <div class="container">
+                <h3 class="section-title slide-up">المقالات</h3>
+                <p class="fade-in">قريباً سيُعرض هنا أحدث مقالاتنا القانونية.</p>
+                <div id="articlesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="carouselInner">
+                        </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#articlesCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">السابق</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#articlesCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">التالي</span>
+                    </button>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        </div>
+                </div>
+            </div>
+            <ul id="articles-list"></ul>
+        </section>
+        <section id="testimonials" class="testimonials" data-aos="fade-up">
+            <div class="container">
+                <h2>آراء العملاء</h2>
+                <div class="slider">
+                    <blockquote class="t-item">
+                        <p>تعامل راقٍ واحترافية عالية. تم حل قضيتي بأسرع وقت.</p>
+                        <footer>— م. خالد</footer>
+                    </blockquote>
+                    <blockquote class="t-item">
+                        <p>فريق متميز ومتابعة مستمرة. أنصح بشدة.</p>
+                        <footer>— د. منى</footer>
+                    </blockquote>
+                    <blockquote class="t-item">
+                        <p>خبرة قانونية واضحة وتواصل ممتاز.</p>
+                        <footer>— أ. محمد</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+        <section id="team" class="team" data-aos="fade-up">
+            <div class="container">
+                <h2>فريقنا</h2>
+                <div class="cards">
+                    <article class="card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="محامٍ" loading="lazy">
+                        <h3>أ. أحمد علي</h3>
+                        <p>محامٍ ومستشار قانوني - عقود وشركات</p>
+                    </article>
+                    <article class="card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="محامية" loading="lazy">
+                        <h3>أ. سارة محمد</h3>
+                        <p>محامية - قضايا الأسرة والأحوال الشخصية</p>
+                    </article>
+                    <article class="card">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="محامٍ" loading="lazy">
+                        <h3>أ. كريم حسن</h3>
+                        <p>محامٍ - القضايا المدنية والجنائية</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="section alt">
+            <div class="container">
+                <h3 class="section-title slide-up">تواصل معنا</h3>
+                <div class="contact-grid fade-in">
+                    <form id="contact-form" class="contact-form">
+                        <label>الاسم</label>
+                        <input type="text" name="name" placeholder="اسمك" required>
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" name="email" placeholder="example@mail.com" required>
+                        <label>الرسالة</label>
+                        <textarea name="message" rows="5" placeholder="اكتب رسالتك..." required></textarea>
+                        <button type="submit" class="btn">إرسال</button>
+                    </form>
+                    <aside class="contact-info">
+                        <h4>معلومات التواصل</h4>
+                        <p><i class="fa-solid fa-phone"></i> 0123-456-789</p>
+                        <p><i class="fa-solid fa-envelope"></i> info@lawoffice.example</p>
+                        <p><i class="fa-solid fa-location-dot"></i> مدينتك - عنوان المكتب</p>
+                        <div class="socials">
+                            <a href="#" aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+            <div class="map-container" data-aos="fade-up">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110566.3219!2d31.2357!3d30.0444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAyJzQwLjAiTiAzMcKwMTQnMDguMCJF!5e0!3m2!1sar!2seg!4v1234567890" 
+                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </section>
+        <footer class="footer fade-in">
+            <div class="container">
+                <p>⚖️ مكتب المحاماة — موقع رسمي بتصميم أنيق وهادئ</p>
+            </div>
+        </footer>
+    </main>
+
+    <button id="cta-btn" class="whatsapp-float" aria-label="واتساب">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 640 640">
+            <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z" />
+        </svg>
+    </button>
+    <div id="cta-modal" class="cta-modal">
+        <div class="cta-modal-content">
+            <p>هل ترغب في التواصل مع أحد محامينا عبر الواتساب؟</p>
+            <div class="cta-actions">
+                <a href="https://wa.me/201065274215" target="_blank" class="btn-yes">نعم</a>
+                <button id="cta-no" class="btn-no">لا</button>
+            </div>
         </div>
-      </div>
-    
-        <div class="map-container" data-aos="fade-up">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110566.3219!2d31.2357!3d30.0444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAyJzQwLjAiTiAzMcKwMTQnMDguMCJF!5e0!3m2!1sar!2seg!4v1234567890" 
-            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <footer class="footer fade-in">
-      <div class="container">
-        <p>⚖️ مكتب المحاماة — موقع رسمي بتصميم أنيق وهادئ</p>
-      </div>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
-
-<button id="cta-btn" class="whatsapp-float" aria-label="واتساب">
-<svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
-</button>
-
-
-<!-- CTA Button -->
-<button id="cta-btn" class="cta-btn">
-  <
-  تواصل معنا
-</button>
-
-<!-- CTA Modal -->
-<div id="cta-modal" class="cta-modal">
-  <div class="cta-modal-content">
-    <p>هل ترغب في التواصل مع أحد محامينا عبر الواتساب؟</p>
-    <div class="cta-actions">
-      <a href="https://wa.me/201065274215" target="_blank" class="btn-yes">نعم</a>
-      <button id="cta-no" class="btn-no">لا</button>
     </div>
-  </div>
-</div>
+    <button id="scrollTopBtn" aria-label="إلى أعلى">↑</button>
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<button id="scrollTopBtn" aria-label="إلى أعلى">↑</button>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 
-<!-- <div id="cta-modal" class="cta-modal">
-  <div class="modal-content">
-    <p>هل تحب أن تتواصل مع أحد أعضاء المكتب؟</p>
-    <div class="actions">
-      <button id="cta-yes" class="btn-primary">نعم</button>
-      <button id="cta-no" class="btn-secondary">لا</button>
-    </div>
-  </div>
-</div> -->
+    <script>
+        const STORAGE_KEY = 'blogArticles';
+        const carouselInner = document.getElementById('carouselInner');
+        const carouselIndicators = document.getElementById('carouselIndicators');
 
+        function getArticles() {
+            const storedArticles = localStorage.getItem(STORAGE_KEY);
+            return storedArticles ? JSON.parse(storedArticles) : [];
+        }
+
+        function renderCarousel() {
+            const articles = getArticles();
+            articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+
+            if (articles.length === 0) {
+                carouselInner.innerHTML = `<div class="p-5 text-center">لا توجد مقالات حاليًا.</div>`;
+                return;
+            }
+
+            articles.forEach((article, index) => {
+                const slide = document.createElement('div');
+                slide.className = `carousel-item${index === 0 ? ' active' : ''}`;
+                slide.innerHTML = `
+                    <img src="${article.image}" class="d-block w-100" alt="${article.title}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="fw-bold">${article.title}</h5>
+                        <p>${article.category} | ${article.date}</p>
+                    </div>
+                `;
+                carouselInner.appendChild(slide);
+
+                const indicator = document.createElement('button');
+                indicator.type = 'button';
+                indicator.setAttribute('data-bs-target', '#articlesCarousel');
+                indicator.setAttribute('data-bs-slide-to', index);
+                indicator.setAttribute('aria-label', `Slide ${index + 1}`);
+                indicator.className = index === 0 ? 'active' : '';
+                indicator.setAttribute('aria-current', index === 0 ? 'true' : 'false');
+                carouselIndicators.appendChild(indicator);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCarousel);
+    </script>
 </body>
 </html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>📚 المكتبة القانونية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        :root {
+            --bg-color: #f9f9f9;
+            --text-color: #000;
+            --card-bg: #fff;
+            --btn-bg: #0d6efd;
+            --btn-text: #fff;
+            --input-bg: #fff;
+            --input-border: #ccc;
+            --input-placeholder: #666;
+            --filter-bg: #fff;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+        }
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --card-bg: #1e1e1e;
+            --btn-bg: #4a90e2;
+            --btn-text: #ffffff;
+            --input-bg: #2c2c2c;
+            --input-border: #555;
+            --input-placeholder: #bbb;
+            --filter-bg: #2c2c2c;
+            --shadow-light: rgba(255, 255, 255, 0.05);
+            --shadow-medium: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        /* Card and button effects */
+        .card {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px var(--shadow-light);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px var(--shadow-medium);
+        }
+        .card-img-top {
+            max-height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+        .card-img-top:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        .rating {
+            color: #ffc107;
+        }
+        .btn-primary,
+        .side-button,
+        #ctaBtn,
+        #scrollTopBtn,
+        .social-share a {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+        .btn-primary:hover,
+        .side-button:hover,
+        #ctaBtn:hover,
+        #scrollTopBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px var(--shadow-medium);
+        }
+        .social-share a:hover {
+            transform: scale(1.2);
+            color: var(--btn-bg);
+        }
+
+        /* Side buttons */
+        .side-button {
+            position: fixed;
+            left: 20px;
+            width: 150px;
+            border-radius: 10px;
+            font-weight: 600;
+            padding-right: 12px;
+            z-index: 999;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideFadeIn 0.6s forwards;
+            box-shadow: 0 4px 12px var(--shadow-light);
+        }
+        .side-button i {
+            margin-left: 8px;
+        }
+        #toggleModeBtn {
+            top: 30px;
+            animation-delay: 0.1s;
+        }
+        #focusSearchBtn {
+            top: 90px;
+            animation-delay: 0.2s;
+        }
+        #goHomeBtn {
+            top: 150px;
+            animation-delay: 0.3s;
+        }
+        @keyframes slideFadeIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* WhatsApp CTA */
+        #ctaBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #25D366;
+            color: white;
+            padding: 14px 28px;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 40px;
+            text-decoration: none;
+            z-index: 9999;
+            box-shadow: 0 6px 15px var(--shadow-medium);
+            transition: all 0.3s ease;
+        }
+        #ctaBtn:hover {
+            background-color: #1ebe5d;
+            transform: translateX(-50%) scale(1.03);
+        }
+
+        /* Scroll to top button */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 9999;
+            display: none;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px var(--shadow-medium);
+            transition: background-color 0.3s, transform 0.2s ease;
+        }
+        #scrollTopBtn:hover {
+            background-color: #0b5ed7;
+            transform: scale(1.1);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .side-button {
+                width: 50px;
+                height: 50px;
+                padding: 0;
+                font-size: 20px;
+                text-align: center;
+            }
+            .side-button span {
+                display: none;
+            }
+            .side-button i {
+                margin: 0;
+            }
+        }
+
+        /* Filters and search */
+        #filter-section {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+        #filter-section label {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1.1em;
+        }
+        #filter-section select {
+            width: 200px;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1.8px solid var(--input-border);
+            background-color: var(--filter-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 5px var(--shadow-light);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 0.75rem center;
+            background-size: 16px 12px;
+            direction: rtl;
+            padding-left: 2.5rem;
+        }
+        body.dark-mode #filter-section select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+        }
+        #filter-section select:focus {
+            outline: none;
+            border-color: var(--btn-bg);
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        #searchBar {
+            width: 400px;
+            max-width: 100%;
+            margin: 20px auto;
+            display: block;
+            padding: 14px 20px;
+            border-radius: 20px;
+            border: 1.8px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 6px var(--shadow-light);
+        }
+        #searchBar:focus {
+            outline: none;
+            border-color: var(--btn-bg);
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        /* Modal */
+        #bookModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        #bookModal.active {
+            display: flex;
+            animation: fadeInModal 0.3s ease forwards;
+        }
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        #bookModal .modal-content {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 25px;
+            box-shadow: 0 0 20px var(--shadow-medium);
+            position: relative;
+            animation: scaleUp 0.3s ease forwards;
+        }
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.8);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        #bookModal .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            font-size: 35px;
+            border: solid rgb(255, 255, 255) 3px;
+            padding: none;
+            border-radius: 25%;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        #bookModal .close-btn:hover {
+            color: #d9534f;
+        }
+        #bookModal img {
+            max-width: 200px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        #bookModal .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        #bookModal .modal-info {
+            flex: 1 1 300px;
+        }
+        #bookModal .modal-qr {
+            flex: 0 0 180px;
+            text-align: center;
+            margin-left: 14px;
+        }
+        #bookModal h3 {
+            margin-top: 0;
+        }
+        #bookModal p.description {
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        #bookModal a.btn-download {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        #bookModal a.btn-download:hover {
+            background-color: #0b5ed7;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-secondary side-button" id="toggleModeBtn" onclick="toggleDarkMode()">
+        <i class="fa fa-moon"></i> <span>تبديل الوضع</span>
+    </button>
+    <button class="btn btn-info side-button" id="focusSearchBtn">
+        <i class="fa fa-search"></i> <span>بحث</span>
+    </button>
+    <button class="btn btn-success side-button" id="goHomeBtn">
+        <i class="fa fa-home"></i> <span>الرئيسية</span>
+    </button>
+
+    <a href="https://wa.me/201234567890?text=أرغب+في+طلب+استشارة+قانونية" target="_blank" id="ctaBtn">
+        <i class="fab fa-whatsapp"></i> اطلب استشارة عبر واتساب
+    </a>
+
+    <div class="container py-5">
+        <h2 class="text-center mb-4">📚 المكتبة القانونية</h2>
+        <input type="search" id="searchBar" placeholder="ابحث عن كتاب , مؤلف , تصنيف ...الخ" aria-label="بحث عن كتاب" />
+
+        <div id="filter-section">
+            <div class="filter-group">
+                <label for="categoryFilter">التصنيف</label>
+                <select id="categoryFilter" aria-label="فلترة حسب التصنيف"></select>
+            </div>
+            <div class="filter-group">
+                <label for="authorFilter">المؤلف</label>
+                <select id="authorFilter" aria-label="فلترة حسب المؤلف"></select>
+            </div>
+            <div class="filter-group">
+                <label for="yearFilter">السنة</label>
+                <select id="yearFilter" aria-label="فلترة حسب السنة"></select>
+            </div>
+        </div>
+
+        <div id="booksContainer" class="row g-4"></div>
+    </div>
+
+    <button id="scrollTopBtn" title="العودة للأعلى"><i class="fa fa-arrow-up"></i></button>
+
+    <div id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="إغلاق">×</button>
+            <div class="modal-body">
+                <img id="modalCover" src="" alt="غلاف الكتاب" />
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p><strong>المؤلف:</strong> <span id="modalAuthor"></span></p>
+                    <p><strong>التصنيف:</strong> <span id="modalCategory"></span></p>
+                    <p><strong>السنة:</strong> <span id="modalYear"></span></p>
+                    <p class="description" id="modalDescription"></p>
+                    <a id="modalDownload" class="btn-download" href="#" target="_blank" rel="noopener noreferrer">تحميل الكتاب</a>
+                </div>
+                <div class="modal-qr">
+                    <h5>مسح QR لتحميل الكتاب</h5>
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        const STORAGE_KEY = 'libraryBooks';
+
+        // Retrieve books from Local Storage or use a default list
+        function getBooks() {
+            const storedBooks = localStorage.getItem(STORAGE_KEY);
+            if (storedBooks) {
+                return JSON.parse(storedBooks);
+            }
+            return [];
+        }
+
+        let books = getBooks();
+
+        const container = document.getElementById("booksContainer");
+        const categoryFilter = document.getElementById("categoryFilter");
+        const authorFilter = document.getElementById("authorFilter");
+        const yearFilter = document.getElementById("yearFilter");
+        const searchBar = document.getElementById("searchBar");
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        const bookModal = document.getElementById("bookModal");
+        const modalCloseBtn = bookModal.querySelector(".close-btn");
+        const modalCover = document.getElementById("modalCover");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalAuthor = document.getElementById("modalAuthor");
+        const modalCategory = document.getElementById("modalCategory");
+        const modalYear = document.getElementById("modalYear");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalDownload = document.getElementById("modalDownload");
+        const qrcodeContainer = document.getElementById("qrcode");
+
+        function generateStars(rating) {
+            let stars = "";
+            for (let i = 1; i <= 5; i++) {
+                stars += i <= rating ? "&#9733;" : "&#9734;";
+            }
+            return stars;
+        }
+
+        function getUniqueValues(arr, key) {
+            return [...new Set(arr.map(item => item[key]))].sort();
+        }
+
+        function fillSelect(select, values) {
+            select.innerHTML = '<option value="all">الكل</option>';
+            values.forEach(val => {
+                const opt = document.createElement("option");
+                opt.value = val;
+                opt.textContent = val;
+                select.appendChild(opt);
+            });
+        }
+
+        function filterBooks() {
+            const cat = categoryFilter.value;
+            const auth = authorFilter.value;
+            const year = yearFilter.value;
+            const search = searchBar.value.toLowerCase();
+            return books.filter(book => {
+                return (
+                    (cat === "all" || book.category === cat) &&
+                    (auth === "all" || book.author === auth) &&
+                    (year === "all" || String(book.year) === year) &&
+                    (book.title.toLowerCase().includes(search) ||
+                        book.author.toLowerCase().includes(search) ||
+                        book.category.toLowerCase().includes(search))
+                );
+            });
+        }
+
+        function displayBooks() {
+            books = getBooks(); // Get the latest books from storage
+            fillFilters();
+            container.innerHTML = "";
+            const filtered = filterBooks();
+            if (!filtered.length) {
+                container.innerHTML = "<p class='text-center'>لا توجد نتائج.</p>";
+                return;
+            }
+
+            filtered.forEach(book => {
+                const col = document.createElement("div");
+                col.className = "col-sm-6 col-md-4 col-lg-3 fade-in";
+                col.innerHTML = `
+                    <div class="card book-card h-100 shadow-sm" tabindex="0" role="button" aria-pressed="false" aria-label="عرض تفاصيل ${book.title}">
+                        <img src="${book.cover}" class="card-img-top" alt="غلاف ${book.title}">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${book.title}</h5>
+                            <p class="card-text mb-1"><strong>المؤلف:</strong> ${book.author}</p>
+                            <p class="card-text mb-1"><strong>التصنيف:</strong> ${book.category}</p>
+                            <p class="card-text mb-1"><strong>السنة:</strong> ${book.year}</p>
+                            <p class="rating mb-2">${generateStars(book.rating || 0)}</p>
+                            <a class="btn btn-primary mt-auto" href="${book.file}" target="_blank" rel="noopener noreferrer" tabindex="-1">تحميل</a>
+                            <div class="mt-3 d-flex justify-content-center gap-3 social-share">
+                                <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(book.file)}&text=${encodeURIComponent(book.title)}" target="_blank" title="مشاركة تويتر" class="text-primary fs-5" tabindex="-1"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(book.file)}" target="_blank" title="مشاركة فيسبوك" class="text-primary fs-5" tabindex="-1"><i class="fab fa-facebook"></i></a>
+                                <a href="https://wa.me/?text=${encodeURIComponent(book.title + ' ' + book.file)}" target="_blank" title="مشاركة واتساب" class="text-success fs-5" tabindex="-1"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                col.querySelector(".card").addEventListener("click", () => openModal(book));
+                col.querySelector(".card").addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openModal(book);
+                    }
+                });
+                container.appendChild(col);
+            });
+        }
+
+        function fillFilters() {
+            fillSelect(categoryFilter, getUniqueValues(books, "category"));
+            fillSelect(authorFilter, getUniqueValues(books, "author"));
+            fillSelect(yearFilter, getUniqueValues(books, "year"));
+        }
+
+        function openModal(book) {
+            modalCover.src = book.cover;
+            modalCover.alt = `غلاف ${book.title}`;
+            modalTitle.textContent = book.title;
+            modalAuthor.textContent = book.author;
+            modalCategory.textContent = book.category;
+            modalYear.textContent = book.year;
+            modalDescription.textContent = book.description || "لا يوجد وصف متوفر.";
+            modalDownload.href = book.file;
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, {
+                text: book.file,
+                width: 160,
+                height: 160,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+            });
+            bookModal.classList.add("active");
+            bookModal.focus();
+        }
+
+        modalCloseBtn.onclick = () => {
+            bookModal.classList.remove("active");
+        };
+
+        bookModal.onclick = e => {
+            if (e.target === bookModal) {
+                bookModal.classList.remove("active");
+            }
+        };
+
+        window.addEventListener("keydown", e => {
+            if (e.key === "Escape" && bookModal.classList.contains("active")) {
+                bookModal.classList.remove("active");
+            }
+        });
+
+        document.getElementById("focusSearchBtn").onclick = () => searchBar.focus();
+        document.getElementById("goHomeBtn").onclick = () => (window.location.href = "https://kmma209-droid.github.io/law-office-website/");
+
+        [categoryFilter, authorFilter, yearFilter, searchBar].forEach(input =>
+            input.addEventListener("input", displayBooks)
+        );
+
+        window.onscroll = () => {
+            if (document.documentElement.scrollTop > 200) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+        scrollTopBtn.onclick = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
+
+        function applySystemTheme() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add("dark-mode");
+            } else {
+                document.body.classList.remove("dark-mode");
+            }
+        }
+        applySystemTheme();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applySystemTheme);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        document.addEventListener('DOMContentLoaded', displayBooks);
+    </script>
+</body>
+</html>
